@@ -5,8 +5,9 @@ import java.util.Scanner;
 
 public class JungleRun {
 
-    private static ArrayList<HashMap> participants = new ArrayList<HashMap>();
+    private static ArrayList<HashMap> participants = new ArrayList();
     private static int selectedOption;
+    private static int id;
 
 
     public static void main(String[] args) {
@@ -15,38 +16,58 @@ public class JungleRun {
         try {
 
             System.out.println("Escolha uma das opções abaixo:\n\n" +
-                    "1 - Registrar participante");
+                    "1 - Registrar participante\n" +
+                    "2 - Mostrar Participantes\n" +
+                    "3 - Remover participante\n" +
+                    "Qualquer outro numero - Fechar sistema");
 
             selectedOption = option.nextInt();
 
-            if(selectedOption == 1) {
 
-                ScanParticipantData.run();
+            switch (selectedOption) {
+                case 1:
 
-                System.out.println(participants);
+                    ScanParticipantData.run();
 
-            } else {
+                    JungleRun.main(null);
 
-                System.out.println("Escolha o número 1");
+                    break;
+
+                case 2:
+
+                    System.out.println(participants);
+
+                    JungleRun.main(null);
+
+                    break;
+
+                default:
+
+                    System.out.println("Até a próxima");
+
+                    break;
 
             }
 
         } catch (InputMismatchException _error) {
-//
-            System.out.println("Rode o programa novamente e escolha o número da opção");
-//
+
+            System.out.println("Escolha o número da opção");
+            JungleRun.main(null);
+
         }
-
-
 
     }
 
     public static void register(String name, String age, String category) {
 
+        String currentId = String.valueOf(id);
+
         HashMap newParticipant = new Participant()
-                .setParticipant(name, age, category);
+                .setParticipant(currentId, name, age, category);
 
         participants.add(newParticipant);
+
+        id += 1;
 
     }
 }

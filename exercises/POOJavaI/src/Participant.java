@@ -7,8 +7,9 @@ public class Participant {
         participant = new HashMap<>();
     }
 
-    public HashMap setParticipant(String name, String age, String category){
+    public HashMap setParticipant(String id, String name, String age, String category){
 
+        participant.put("id", id);
         participant.put("name", name);
         participant.put("age", age);
         participant.put("category", category);
