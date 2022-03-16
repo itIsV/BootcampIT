@@ -35,7 +35,15 @@ public class JungleRun {
 
                 case 2:
 
-                    System.out.println(participants);
+                    printParticipants();
+
+                    JungleRun.main(null);
+
+                    break;
+
+                case 3:
+
+                    removeParticipant();
 
                     JungleRun.main(null);
 
@@ -51,7 +59,7 @@ public class JungleRun {
 
         } catch (InputMismatchException _error) {
 
-            System.out.println("Escolha o número da opção");
+            System.out.println("Escolha o número da opção\n\n");
             JungleRun.main(null);
 
         }
@@ -60,7 +68,8 @@ public class JungleRun {
 
     public static void register(String name, String age, String category) {
 
-        String currentId = String.valueOf(id);
+//        String currentId = String.valueOf(id);
+        String currentId = Integer.toString(id); // opção mais semântica
 
         HashMap newParticipant = new Participant()
                 .setParticipant(currentId, name, age, category);
@@ -69,5 +78,30 @@ public class JungleRun {
 
         id += 1;
 
+    }
+
+    private static void printParticipants() {
+        System.out.println(participants + "\n");
+    }
+
+    private static void removeParticipant() {
+
+        Scanner getId = new Scanner(System.in);
+
+        System.out.println("Insira o id do participante:\n");
+
+        String id = getId.next();
+
+       boolean removed =  participants.removeIf(participant -> participant.containsValue(id));
+
+       if(removed) {
+
+           System.out.println("Participante removido com sucesso!\n");
+
+       } else {
+
+           System.out.println("participante não existe.\n");
+
+       }
     }
 }
