@@ -49,6 +49,21 @@ public class Pessoa {
         this.nome = nome;
         this.idade = idade;
         this.ID = ID;
+
+        this.pessoa.put(
+                "nome", nome
+        );
+
+        this.pessoa.put(
+                "idade", Integer.toString(idade)
+        );
+
+        this.pessoa.put(
+                "ID", ID
+        );
+
+        pessoas.add(pessoa);
+
     }
 
     public Pessoa() {
